@@ -1,0 +1,6 @@
+test-results/
+tmp/
+routes/
+/vendor
+/node_modules
+/public
