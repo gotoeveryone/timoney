@@ -1,0 +1,26 @@
+{{set . "title" "取引一覧"}}
+{{template "header.html" .}}
+
+    <form action="{{ url "Tradings.Save" }}" method="POST">
+        {{template "flash.html" .}}
+        <!-- <input type="hidden" name="csrf_token" value="{{ ._csrftoken }}" /> -->
+        {{ with $field := field "form.Name" .}}
+        <label>名前</label><input type="text" name="{{ $field.Name }}" value="あああああ">
+        {{ end }}
+        {{ with $field := field "form.AccountID" .}}
+        <label>勘定科目</label><input type="number" name="{{ $field.Name }}" value="1">
+        {{ end }}
+        {{ with $field := field "form.Traded" .}}
+        <label>取引日</label><input type="text" name="{{ $field.Name }}" value="2017/7/10">
+        {{ end }}
+        {{ with $field := field "form.Payment" .}}
+        <label>金額</label><input type="number" name="{{ $field.Name }}" value="100">
+        {{ end }}
+        <button>登録</button>
+    </form>
+
+    {{range .tradings}}
+    <div>{{.Traded}} - {{firstof .Name "" }} - {{.Account.Name}}</div>
+    {{end}}
+
+{{template "footer.html" .}}

@@ -4,6 +4,7 @@ import (
 	"timoney/app/models"
 
 	"github.com/revel/revel"
+	// csrf "github.com/revel/revel/modules/csrf/app"
 )
 
 var (
@@ -26,9 +27,10 @@ func init() {
 		revel.ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 		revel.I18nFilter,              // Resolve the requested language
 		HeaderFilter,                  // Add some security based headers
-		revel.InterceptorFilter,       // Run interceptors around the action.
-		revel.CompressFilter,          // Compress the result.
-		revel.ActionInvoker,           // Invoke the action.
+		// csrf.CsrfFilter,               // Csrf Filter
+		revel.InterceptorFilter, // Run interceptors around the action.
+		revel.CompressFilter,    // Compress the result.
+		revel.ActionInvoker,     // Invoke the action.
 	}
 
 	// register startup functions with OnAppStart
@@ -37,6 +39,11 @@ func init() {
 	// revel.OnAppStart(ExampleStartupScript)
 	revel.OnAppStart(models.InitDB)
 	// revel.OnAppStart(FillCache)
+
+	// トランザクション制御をインターセプト
+	revel.InterceptMethod((*models.Transactional).Begin, revel.BEFORE)
+	revel.InterceptMethod((*models.Transactional).Commit, revel.AFTER)
+	revel.InterceptMethod((*models.Transactional).Rollback, revel.PANIC)
 }
 
 // HeaderFilter adds common security headers

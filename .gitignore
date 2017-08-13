@@ -4,3 +4,4 @@ routes/
 /vendor
 /node_modules
 /public
+/config.json

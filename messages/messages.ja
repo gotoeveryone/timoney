@@ -5,3 +5,7 @@
 # - http://www.rfc-editor.org/rfc/bcp/bcp47.txt
 # - http://www.w3.org/International/questions/qa-accept-lang-locales
 
+login.form.Account.required = ユーザIDは必須です。
+login.form.Password.required = パスワードは必須です。
+
+tradings.form.Traded.invalid = パスワードは必須です。

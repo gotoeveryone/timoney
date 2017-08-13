@@ -8,6 +8,11 @@ module:testrunner
 
 
 GET     /                                       App.Index
+POST    /login                                  App.Login
+
+GET     /api                               Tradings.API
+GET     /tradings                               Tradings.Index
+POST    /tradings                               Tradings.Save
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

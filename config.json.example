@@ -1,0 +1,23 @@
+{
+    "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "auth": "forge"
+    },
+    "db": {
+        "name": "test",
+        "host": "localhost",
+        "port": 3306,
+        "user": "forge",
+        "password": "forge"
+    },
+    "mail": {
+        "smtp": "example.com",
+        "port": 25,
+        "user": "forge",
+        "password": "forge",
+        "from": "hoge@example.com",
+        "fromAlias": "Test User",
+        "to": []
+    }
+}

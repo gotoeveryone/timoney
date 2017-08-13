@@ -1,21 +1,26 @@
-{{set . "title" "Home"}}
+{{set . "title" "ログイン"}}
 {{template "header.html" .}}
 
-<header class="jumbotron" style="background-color:#A9F16C">
-  <div class="container">
-    <div class="row">
-      <h1>It works!</h1>
-      <p></p>
-    </div>
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-    </div>
-  </div>
-</div>
+    <form name="login" method="post" action="{{ url "App.Login" }}">
+        {{template "flash.html" .}}
+        <ul class="login">
+            <li class="row">
+                <label>ユーザID</label>
+                {{ with $field := field "form.Account" .}}
+                <input type="text" name="{{ $field.Name }}">
+                {{ end }}
+            </li>
+            <li class="row">
+                <label>パスワード</label>
+                {{ with $field := field "form.Password" .}}
+                <input type="password" name="{{ $field.Name }}">
+                {{ end }}
+            </li>
+            <li class="row">
+                <button type="submit" value="login">ログイン</button>
+                <button type="reset" value="reset">リセット</button>
+            </li>
+        </ul>
+    </form>
 
 {{template "footer.html" .}}
